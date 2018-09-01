@@ -17,6 +17,7 @@ void add(int u,int v,int cap){
     G[v].push_back(Edge(u,0,(int)G[u].size()-1));
 }
 
+
 void bfs(int s){
     memset(level,-1,sizeof(level));
     queue<int> q;
