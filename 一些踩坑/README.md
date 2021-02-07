@@ -44,3 +44,35 @@
         }
     }
 ```
+
+## 在考虑特判问题时一定要确定特判的那个点是否被触发
+
+```cpp
+    //bad
+    for(int i = 1;i <= N;i += 1){
+        auto it = mp.lower_bound(b[i]);
+        if(it != mp.end() && (it->first) == b[i]){
+            res[it->second] = i;
+            mp.erase(it);
+        }
+    }
+    if(res[M] == 0){
+        cout << "NO" << endl;
+        return;
+    }
+    //good
+    for(int i = 1;i <= N;i += 1){
+        if(res[M] != 0){
+            break;
+        }
+        if(b[i] == c[M]){
+            res[M] = i;
+        }
+    }
+    if(res[M] == 0){
+        cout << "NO" << endl;
+        return;
+    }
+```
+
+上一个会出现c[M] = b[i],但是没有匹配到c[M]的情况
