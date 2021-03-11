@@ -76,3 +76,18 @@
 ```
 
 上一个会出现c[M] = b[i],但是没有匹配到c[M]的情况
+
+## 做模拟题目要把每个操作都拆分成一个小函数，让思路更加清晰
+
+```cpp
+void run(int &now,int dir,int add){
+
+}
+bool inrange(int l,int r,int value){
+ 
+}
+int getdir(int now,int target){
+ 
+}
+void solve(){}
+```
