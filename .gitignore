@@ -3,3 +3,4 @@ test.cpp
 *.exe
 .vscode
 manCase
+.DS_Store
