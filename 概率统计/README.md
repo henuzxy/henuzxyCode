@@ -56,6 +56,15 @@ int rand10_2() {
 做法三：期望次数:2.56次
 
 ```cpp
+int rand5(){
+    while(true){
+        int value = rand7();
+        if(value <= 5){
+            return value;
+        }
+    }
+    return 0;
+}
 int rand6(){
     while(true){
         int value = rand7();
