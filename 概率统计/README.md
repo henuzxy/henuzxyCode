@@ -1,6 +1,7 @@
 https://leetcode-cn.com/problems/implement-rand10-using-rand7/
 
 基础代码
+
 ```cpp
 #include <bits/stdc++.h>
 
@@ -14,7 +15,22 @@ int rand7(){            //可以确定是均匀的，并且进行了验证。
     timeCount += 1;
     return dis(eng);
 }
+
+int main(void){
+  int book[14] = {0};
+  int MAX = 10000000;
+  for(int i=1;i<=MAX;i++){
+    book[rand10()]++;
+  }
+  for(int i=1;i<=10;i++){
+    cout << i << " " << book[i] << endl;
+  }
+  cout << (double)timeCount/MAX << endl;
+
+  return 0;
+}
 ```
+
 思路均是拒绝采样
 做法一：期望次数:2.45
 ```cpp
@@ -28,6 +44,7 @@ int rand10_1() {
     return idx%10+1;
 }
 ```
+
 做法二：期望次数:2.2次
 ```cpp
 int rand10_2() {
@@ -112,4 +129,46 @@ int rand10_4(){
         }
     }
 }
+```
+
+做法五：期望次数:2.23
+
+```cpp
+int rand5(){
+    while(true){
+        int value = rand7();
+        if(value <= 5){
+            return value;
+        }
+    }
+    return 0;
+}
+int rand6(){
+    while(true){
+        int value = rand7();
+        if(value <= 6){
+            return value;
+        }
+    }
+    return 0;
+}
+int rand10(){
+  int first = rand7();
+  if(first <= 5){
+    int second = rand6();
+    if(second % 2 == 0){
+      return first*2;
+    }else{
+      return first*2-1;
+    }
+  }else{
+    int second = rand5();
+    if(first == 6){
+      return second*2;
+    }else{
+      return second*2-1;
+    }
+  }
+}
+
 ```
