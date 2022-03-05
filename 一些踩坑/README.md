@@ -95,3 +95,28 @@ void solve(){}
 ## 二维坐标映射为一维坐标，一定要注意基数是一行的个数，而不是最大值
 
 例如：0 <= x, y <= 1000，如果基数认为是1000，那么机会出现(0,1000),(1000,0)映射结果都是1000，所以切记，这里是1001或者更大的数，更大的数，只会相当于末尾的数不存在，浪费一些空间，但是绝对不会出现重复导致错误。
+
+
+## 回文串之类的题目，要左右l,r两个变量向中间靠近，不要想着固定l,直接计算r的最大位置。
+
+踩坑题目: https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
+错误代码：https://leetcode.com/contest/biweekly-contest-73/submissions/detail/653880058/
+正确代码：https://leetcode.com/submissions/detail/653935330/
+```cpp
+for(int l=0;l<=m;l++){
+    int r = N-1-l;//典型
+    if(s[l] != s[r]){
+        for(int j=r-1;j>l;j--){
+            if(s[l] == s[j]){
+                res += r-j;
+                // cout << l << " " << j << " " << r << endl;
+                s = s.substr(0,j) + s.substr(j+1,r-j) + s[j] + s.substr(r+1);
+                // cout << s << endl;
+                break;
+            }
+        }
+    }
+}
+```
+
+这里想着枚举l，直接就确定r的位置，但是实际如果存在一个单数的字符在l的前面，那么l的位置对应算出来的r的位置就不正确了。
